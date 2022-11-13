@@ -1,0 +1,29 @@
+.card2 {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.title2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.form {
+  display: flex;
+  gap:20px;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+

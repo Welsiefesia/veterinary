@@ -1,0 +1,46 @@
+<div class="user">
+  <mat-toolbar class="panel" color="primary">
+    <div class="left">
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="caption">Panel użytkownika</span>
+      <span class="example spacer"></span>
+    </div>
+    <div class="right">
+      <span class="caption">user@vet.com</span>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="logout()" mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span>Wyloguj się</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>
+
+<div class="container">
+  <div class="menu" [style.width]="isMenuExpanded ? '200px' : '48px'">
+    <div
+      class="menu-item"
+      *ngFor="let pet of menuPets"
+      [style.padding-left]="isMenuExpanded ? '24px' : '12px'"
+      [routerLink]="[pet.routerLink]"
+      [routerLinkActive]="'active-link'"
+    >
+      <mat-icon class="icon">{{ pet.icon }}</mat-icon>
+      <span class="menu-item__label">{{ pet.label }}</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

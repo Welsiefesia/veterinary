@@ -1,0 +1,33 @@
+<div class="add">
+  <h1>Dodaj gatunek</h1>
+  <form class="form" [formGroup]="form">
+    <mat-form-field class="form-field">
+      <mat-label>Nazwa</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Specjalizacja</mat-label>
+      <mat-select formControlName="specializationId">
+        <mat-option
+          *ngFor="let specialization of speciesState.specializationList | async"
+          [value]="specialization.id"
+        >
+          {{ specialization.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button">
+      <button mat-button mat-dialog-close color="primary">Anuluj</button>
+      <button
+        mat-button
+        (click)="addSpecies()"
+        color="primary"
+        [disabled]="form.invalid"
+      >
+        Zapisz
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,120 @@
+<div class="card2">
+  <mat-card>
+    <mat-card-title class="title2">Rejestracja</mat-card-title>
+    <mat-stepper orientation="vertical" linear>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" class="form">
+          <ng-template matStepLabel>Dane osobowe</ng-template>
+          <mat-form-field appearance="fill">
+            <mat-label>Imię</mat-label>
+            <input matInput formControlName="firstName" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Nazwisko</mat-label>
+            <input matInput formControlName="lastName" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Telefon</mat-label>
+            <input matInput formControlName="phone" required />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Następny krok</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Dane adresowe</ng-template>
+          <mat-form-field class="form" appearance="fill">
+            <mat-label>Adres</mat-label>
+            <input matInput formControlName="address" required />
+          </mat-form-field>
+
+          <mat-form-field class="form" appearance="fill">
+            <mat-label>Miasto</mat-label>
+            <input matInput formControlName="city" required />
+          </mat-form-field>
+
+          <mat-form-field class="form" appearance="fill">
+            <mat-label>Kod pocztowy</mat-label>
+            <input matInput formControlName="postalCode" required />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Cofnij</button>
+            <button mat-button matStepperNext>Następny krok</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Szczegóły konta</ng-template>
+          <mat-form-field class="form" appearance="fill">
+            <mat-label>Adres email</mat-label>
+            <input class="input" matInput formControlName="email" required />
+            <mat-icon
+              matSuffix
+              aria-hidden="false"
+              aria-label="Example email icon"
+              fontIcon="email"
+            ></mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="form" appearance="fill">
+            <mat-label>Hasło</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              [type]="hide ? 'password' : 'text'"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field class="form" appearance="fill">
+            <mat-label>Powtórz hasło</mat-label>
+            <input
+              matInput
+              formControlName="password2"
+              [type]="hide ? 'password' : 'text'"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+
+            <mat-error
+              *ngIf="thirdFormGroup.controls.password2.errors?.passwordMatch"
+            >
+              Błędne hasło
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </mat-step>
+    </mat-stepper>
+
+    <div class="buttons">
+      <button mat-raised-button>Anuluj</button>
+      <button mat-raised-button (click)="showData()" color="primary">
+        Zarejestruj
+      </button>
+    </div>
+  </mat-card>
+</div>

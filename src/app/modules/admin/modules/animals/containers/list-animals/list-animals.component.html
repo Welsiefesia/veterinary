@@ -1,0 +1,67 @@
+<div class="table">
+  <h1 class="title">Zwierzęta</h1>
+  <mat-card>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>Szukaj</mat-label>
+        <input matInput formControlName="search" />
+      </mat-form-field>
+    </form>
+
+    <table class="list" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imię</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Płeć</th>
+        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Data urodzenia
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.birthDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="weightKg">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Waga</th>
+        <td mat-cell *matCellDef="let element">{{ element.weightKg }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="neutered">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sterylizacja</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.neutered"><mat-icon>done</mat-icon> </span>
+          <span *ngIf="!element.neutered"><mat-icon>close</mat-icon></span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef class="edit">
+          <button mat-icon-button (click)="openCreateDialog()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let element" class="edit">
+          <button mat-icon-button (click)="openDetailsDialog(element)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button (click)="onDelete(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of list"
+    ></mat-paginator>
+  </mat-card>
+</div>

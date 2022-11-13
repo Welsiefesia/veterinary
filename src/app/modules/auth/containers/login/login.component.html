@@ -1,0 +1,43 @@
+<div class="card" [formGroup]="loginForm">
+  <mat-card class="card1">
+    <mat-card-title class="title"> Logowanie </mat-card-title>
+
+    <div class="login">
+      <mat-form-field class="form" appearance="fill">
+        <mat-label>Adres email</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          formControlName="email"
+          required
+        />
+        <mat-icon matSuffix fontIcon="email"></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="password">
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="save1">
+      <button class="register" mat-raised-button>Zarejestruj się</button>
+      <button
+        class="save"
+        mat-raised-button
+        [disabled]="disableLogin"
+        (click)="login()"
+      >
+        Zaloguj się
+      </button>
+    </div>
+  </mat-card>
+</div>
